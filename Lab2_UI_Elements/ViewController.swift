@@ -11,27 +11,43 @@ class ViewController: UIViewController {
 
     
     @IBOutlet weak var counterLabel: UILabel!
-    var counter = 0
+    var count = 0
+    var isStepEqual = false //To store, click button or not
     override func viewDidLoad() {
         super.viewDidLoad()
-        printIt()
-        // Do any additional setup after loading the view.
     }
     
-    
-    @IBAction func plusButton(_ sender: Any) {
-        counter+=1
-        printIt()
+    // Counter value will decrease by 1 if isStepEqual is false
+    @IBAction func incrementButton(_ sender: Any) {
+        if(isStepEqual){
+            count = count + 2 // Counter will increase by 2 if true
+        }
+        else{
+            count = count + 1
+        }
+        counterLabel.text = String(count)
+    }
+    // Counter value will decrease by 1 if isStepEqual is false
+    @IBAction func decrementButton(_ sender: Any) {
+        if(isStepEqual){
+            count = count - 2 // Counter will decrease by 2 if true
+        }
+        else{
+            count = count - 1
+        }
+        counterLabel.text = String(count)
     }
     
-    
-    @IBAction func minusButton(_ sender: Any) {
-        counter-=1
-        printIt()
+    // Reset all function
+    @IBAction func restartButton(_ sender: Any) {
+        count = 0
+        isStepEqual = false
+        counterLabel.text = String(count)
     }
-    func printIt(){
-        counterLabel.text = String(counter)
-        
+    
+    // To increase by two number
+    @IBAction func inreaseTwoNumber(_ sender: Any) {
+        isStepEqual = true
     }
     
 }
